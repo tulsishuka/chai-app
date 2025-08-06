@@ -1,6 +1,4 @@
 
-
-
 "use client"
 import React, { useState, useEffect } from 'react'
 import Script from 'next/script'
@@ -8,6 +6,7 @@ import { fetchpayments, initiate, fetchuser } from '@/action/useraction'
 import { ToastContainer, toast } from 'react-toastify';
 import { useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/navigation'   
+import Image from 'next/image'
 
 
 const PaymentPage = ({ username }) => {
@@ -19,12 +18,23 @@ const [paymentform, setPaymentform] = useState({ name: "", message: "", amount: 
   const searchParams = useSearchParams()
     const router = useRouter()
 
-    useEffect(() => {
-        getData()
-    }, [])
+
+
 
     useEffect(() => {
-        if(searchParams.get("paymentdone") == "true"){
+    const getData = async () => {
+        let u = await fetchuser(username)
+        setcurrentuser(u)
+        let dbpayments = await fetchpayments(username)
+        setpayments(dbpayments) 
+    }
+
+    getData()
+}, [username])
+
+
+    useEffect(() => {
+    if (searchParams.get("paymentdone") === "true") {
         toast('Thanks for your donation!', {
             position: "top-right",
             autoClose: 5000,
@@ -34,23 +44,15 @@ const [paymentform, setPaymentform] = useState({ name: "", message: "", amount: 
             draggable: true,
             progress: undefined,
             theme: "light",
-            transition: Bounce,
-            });
-        }
-        router.push(`/${username}`)
-     
-    }, [])
-    
+        });
+    }
+
+    router.push(`/${username}`)
+}, [searchParams, router, username])
+
 
     const handleChange = (e) => {
         setPaymentform({ ...paymentform, [e.target.name]: e.target.value })
-    }
-
-    const getData = async () => {
-        let u = await fetchuser(username)
-        setcurrentuser(u)
-        let dbpayments = await fetchpayments(username)
-        setpayments(dbpayments) 
     }
 
 
@@ -90,13 +92,16 @@ const [paymentform, setPaymentform] = useState({ name: "", message: "", amount: 
       <div className="w-full">
         <div >
           <img className='mx-auto w-full h-[50vh] object-cover' src={currentuser.coverpic} />
+     
         </div>
 
 
         <div className="flex flex-col items-center justify-center mt-[-4rem] mb-4 text-center">
-  <img className="h-24 w-24 md:h-32 md:w-32 border-2 border-gray-900 rounded-full mb-4 object-cover" src={currentuser.profilepic}
-    alt="Profile"
-  />
+  <img className=" md:h-32 md:w-32 border-2 border-gray-900 rounded-full mb-4 object-cover" src={currentuser.profilepic}
+    alt="Profile" />
+   
+
+
   <h1 className='text-white font-bold text-2xl md:text-3xl'>{username}</h1>
                <div className='text-slate-400'>
                  Lets help {username} get a chai!
@@ -119,7 +124,7 @@ const [paymentform, setPaymentform] = useState({ name: "", message: "", amount: 
                 {payments.length == 0 && <li>No user </li>}
                 {payments.map((p, i) => (
                   <li key={i} className='my-4 flex gap-2 items-center'>
-                    <img className='rounded-full' width={33} src="haga.gif" alt="" />
+                    <Image className='rounded-full' width={33} height={33} src="/donor.gif" alt="" />
                     <span>{p.name} donated <span className='font-bold'>₹{p.amount}</span></span>
                   </li>
                 ))}

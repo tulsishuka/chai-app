@@ -13,35 +13,45 @@ const Dashboard = () => {
     const { data: session, update } = useSession()
     const router = useRouter()
 
-    useEffect(() => {
+useEffect(() => {
+    const getData = async () => {
         if (!session) {
             router.push('/login')
+            return
         }
-        getData()
-    }, [])
-
-    
-    const getData = async () => {
         let u = await fetchuser(session.user.name)
         setform(u)
         console.log("u", u)
     }
 
+    getData()
+}, [session, router])
 
-    const handleSubmit = async (e) => {
-        let a = await updateProfile(e, session.user.name)
-        toast('Profile Updated', {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            
-        });
-    }
+
+   const handleSubmit = async (e) => {
+    e.preventDefault(); // Stop form from submitting normally
+
+    if (!session) return;
+
+    // Only pass form data and username to updateProfile
+    const res = await updateProfile(form, session.user.name);
+
+    toast('Profile Updated', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+    });
+
+    setTimeout(() => {
+        router.push(`/${form.username}`);
+    }, 1000);
+};
+
+
              
     const handleChange = (e) => {
         setform({ ...form, [e.target.name]: e.target.value })
@@ -65,7 +75,8 @@ const Dashboard = () => {
             <div className='container mx-auto py-5 px-6 '>
                 <h1 className='text-center my-5 text-3xl font-bold'>Welcome to your Dashboard</h1>
 
-                <form className="max-w-2xl mx-auto" action={handleSubmit}>
+                {/* <form className="max-w-2xl mx-auto" action={handleSubmit}> */}
+<form className="max-w-2xl mx-auto" onSubmit={handleSubmit}>
 
                     <div className='my-2'>
                         <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
