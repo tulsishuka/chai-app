@@ -21,7 +21,6 @@ useEffect(() => {
         }
         let u = await fetchuser(session.user.name)
         setform(u)
-        console.log("u", u)
     }
 
     getData()
@@ -36,7 +35,7 @@ useEffect(() => {
     // Only pass form data and username to updateProfile
     const res = await updateProfile(form, session.user.name);
 
-    toast('Profile Updated', {
+    toast('Profile Created', {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -73,7 +72,7 @@ useEffect(() => {
             />
         <div>
             <div className='container mx-auto py-5 px-6 '>
-                <h1 className='text-center my-5 text-3xl font-bold'>Welcome to your Dashboard</h1>
+                <h1 className='text-center my-5 text-3xl font-bold'>Create your  Profile</h1>
 
                 {/* <form className="max-w-2xl mx-auto" action={handleSubmit}> */}
 <form className="max-w-2xl mx-auto" onSubmit={handleSubmit}>

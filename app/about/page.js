@@ -15,7 +15,7 @@ const AboutPage = () => {
         </p>
 
         <p className="mb-4 text-lg text-slate-300">
-          Whether you're an indie developer, an artist, or someone doing awesome work online,
+          Whether you are an indie developer, an artist, or someone doing awesome work online,
           Get Me A Chai helps you connect with your fans and allow them to appreciate your efforts through a meaningful gesture.
         </p>
 

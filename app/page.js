@@ -20,6 +20,7 @@ export default function Home() {
        </button>
   </Link>
    <Link href="/about">
+   
    <button type="button" className="text-gray-900 bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 font-medium rounded-lg text-sm px-6 py-2.5 text-center">
            About Us
          </button>
@@ -35,8 +36,8 @@ export default function Home() {
      <div className="flex flex-col lg:flex-row justify-center gap-12 mb-12 w-full px-4 max-w-6xl">
        {[
           { src: "/lalu.gif", label: "Fund our community", desc: "We are here to guide you" },
-          { src: "/watch.gif", label: "Fund our community", desc: "We are here to guide you" },
-          { src: "/money.gif", label: "Fund our community", desc: "We are here to guide you" },
+          { src: "/watch.gif", label: "Find your mentors", desc: "We are here to guide you" },
+          { src: "/money.gif", label: "Invest your money", desc: "We are here to guide you" },
         ].map((item, idx) => (
           <div key={idx} className="flex flex-col items-center space-y-2 text-center">
             <Image className="w-20 rounded-full border-4 border-green-800" src={item.src} width={120} height={120} alt={item.src} />

@@ -31,11 +31,12 @@ const Navbar = () => {
         <nav className="hidden md:flex gap items-center">
           {session ? (
             <>
+            <div className="flex gap-5">
               <div className="relative">
                 <button
                   onClick={() => setShowDropdown(!showDropdown)}
                   onBlur={() => setTimeout(() => setShowDropdown(false), 100)}
-                  className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-sm font-medium"
+                  className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 px-7 py-3 rounded-lg text-sm font-medium"
                 >
                   {session.user.email}
                   <svg className="w-2.5 h-2.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -59,6 +60,7 @@ const Navbar = () => {
               >
                 Logout
               </button>
+              </div>
             </>
           ) : (
             <Link href="/login">

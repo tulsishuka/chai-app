@@ -8,8 +8,7 @@ const Footer = () => {
             <p className="text-sm">© {new Date().getFullYear()} Your Company Name. All rights reserved.</p>
             <p className="text-xs mt-2">Follow us on 
                 <a href="#" className="text-blue-400 hover:underline ml-1">Twitter</a>, 
-                <a href="#" className="text-blue-400 hover:underline ml-1">Facebook</a>, 
-                <a href="#" className="text-blue-400 hover:underline ml-1">Instagram</a>
+                <a href="#" className="text-blue-400 hover:underline ml-1">GitHub</a>
             </p>
             </div>
         </footer>
