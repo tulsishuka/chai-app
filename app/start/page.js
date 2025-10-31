@@ -40,15 +40,7 @@ export default function AboutPage() {
         </p>
       </section>
 
-      {/* Call to Action */}
-      <section className="text-center mt-12">
-     
-        <Link href="/">
-          <button className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-3 rounded-full transition">
-            Go to Homepage
-          </button>
-        </Link>
-      </section>
+   
 
    
     </main>
