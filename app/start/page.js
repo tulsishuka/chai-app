@@ -42,7 +42,7 @@ export default function AboutPage() {
 
       {/* Call to Action */}
       <section className="text-center mt-12">
-        <h4 className="text-2xl font-semibold text-purple-700 mb-4">🎉 Ready to Start?</h4>
+     
         <Link href="/">
           <button className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-3 rounded-full transition">
             Go to Homepage
@@ -50,10 +50,7 @@ export default function AboutPage() {
         </Link>
       </section>
 
-      {/* Footer */}
-      <footer className="text-center text-sm text-gray-500 mt-16">
-        © 2025 Get Me A Chai. Built by Tulsi 💜
-      </footer>
+   
     </main>
   );
 }
